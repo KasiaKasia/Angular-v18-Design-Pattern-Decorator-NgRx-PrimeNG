@@ -87,7 +87,6 @@ export const models: Model[] = [
   { name: 'Stihl RMA 510', code: 'Stihl RMA', id: 3 },
 ];
 
-
 export const deliveryType: DeliveryType[] = [
   { name: 'kurier', id: 1 },
   { name: 'odbiór osobisty', id: 2 },
@@ -102,7 +101,7 @@ export interface OrderDetails {
   model: string;
   paymentType: string;
   deliveryType: string;
-  dateAndTime: Date | Date[];  // Zakładam, że może być pojedyncza data lub tablica
+  dateAndTime: Date | Date[];   
   lastName: string;
   firstName: string;
 }

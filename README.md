@@ -1,10 +1,20 @@
 # Configuration
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
 
-## Development server
+**Steps to start the application**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Clone the repository by executing the command: 
+    `git clone git clone https://github.com/KasiaKasia/Angular-Material-v18.git`
+2. Install the necessary libraries to run the Angular application: 
+    `npm i` 
+3. Start the client server: 
+    `ng serve`
+4. Open your web browser and enter the following address: 
+    `http://localhost:4200/`
+
+**The project includes libraries such as:** 
+`@ngrx/signals`, `primeflex`, `primeng`. The Decorator design pattern is also applied.
 
 ## Code scaffolding
 

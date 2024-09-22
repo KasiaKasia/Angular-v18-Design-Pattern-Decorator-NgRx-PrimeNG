@@ -11,5 +11,4 @@ import { OrdersStore } from '../../configuration/signal-store/orders.store';
 })
 export class NavbarComponent {
   readonly storeOrder = inject(OrdersStore);
-
 }

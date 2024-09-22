@@ -7,13 +7,12 @@ import { LogoAngularComponent } from "../components/logo-angular/logo-angular.co
 import { DatePipe } from '@angular/common';
 import { DropdownDefaultsSettingsDirective } from '../directives/dropdown-defaults-settings.directive';
 import { OrdersStore } from '../signal-store/orders.store';
- 
+
 
 @Component({
   selector: 'app-configuration',
   standalone: true,
   imports: [ImportsModule, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective],
- 
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
 })
@@ -25,7 +24,7 @@ export class ConfigurationComponent {
   active: number = 0;
   protected notificationContent: any
   protected notifier: Engine = new EngineTypeName()
-  readonly  storeOrder = inject(OrdersStore);
+  readonly storeOrder = inject(OrdersStore);
 
   protected formBuilderGroup: FormGroup = this.formBuilder.group({
     engineType: new FormControl(<EngineType | null>(null),),
@@ -52,7 +51,7 @@ export class ConfigurationComponent {
   get listAddressesAuthorizedPersons() {
     return this.formBuilderGroupOrder.get('listAddressesAuthorizedPersons') as FormArray;
   }
- 
+
 
   createaddressAuthorizedPerson(): FormGroup {
     const listAddressesAuthorizedPersons = this.formBuilder.group({
@@ -99,7 +98,6 @@ export class ConfigurationComponent {
       this.formBuilderGroup.addControl('tankCapacity', new FormControl(''));
       this.formBuilderGroup.addControl('cuttingLevels', new FormControl('', Validators.required));
 
-      // Usuń niepotrzebne kontrolki
       this.removeControls(['cableLength', 'numberOfBlades', 'color1', 'numberOfBatteries', 'capacityOfOneBattery', 'color2']);
 
     } else if (engineType.name === EngineTypeRecords[2]) {
@@ -107,19 +105,19 @@ export class ConfigurationComponent {
       this.formBuilderGroup.addControl('numberOfBlades', new FormControl(''));
       this.formBuilderGroup.addControl('color1', new FormControl(''));
 
-      // Usuń niepotrzebne kontrolki
+
       this.removeControls(['engineDisplacement', 'tankCapacity', 'cuttingLevels', 'numberOfBatteries', 'capacityOfOneBattery', 'color2']);
     } else if (engineType.name === EngineTypeRecords[3]) {
       this.formBuilderGroup.addControl('numberOfBatteries', new FormControl(''));
       this.formBuilderGroup.addControl('capacityOfOneBattery', new FormControl(''));
       this.formBuilderGroup.addControl('color2', new FormControl('', Validators.required));
 
-      // Usuń niepotrzebne kontrolki
+
       this.removeControls(['engineDisplacement', 'tankCapacity', 'cuttingLevels', 'cableLength', 'bladeCount', 'color1']);
     }
   }
 
-  // Metoda do usuwania niepotrzebnych kontrolek
+
   removeControls(controls: string[]) {
     controls.forEach(control => {
       if (this.formBuilderGroup.contains(control)) {
@@ -164,8 +162,6 @@ export class ConfigurationComponent {
 
     if (this.formBuilderGroup.dirty && this.formBuilderGroup.valid) {
     }
-    console.log('formBuilderGroup ', this.formBuilderGroup.getRawValue())
-
   }
 
   findMaxIdInTasks(): number {
@@ -179,20 +175,18 @@ export class ConfigurationComponent {
     if (this.formBuilderGroupOrder.dirty && this.formBuilderGroupOrder.valid) {
 
     }
-    console.log('formBuilderGroupOrder ', this.formBuilderGroupOrder.getRawValue())
     const newOrders: OrderDetails = {
-      id: this.findMaxIdInTasks() +1,
+      id: this.findMaxIdInTasks() + 1,
       engineType: this.formBuilderGroup.getRawValue().engineType.name,
       brand: this.formBuilderGroup.getRawValue().brand.name,
       model: this.formBuilderGroup.getRawValue().model.name,
       paymentType: this.formBuilderGroupOrder.getRawValue().paymentType.label,
       deliveryType: this.formBuilderGroupOrder.getRawValue().deliveryType.name,
       dateAndTime: this.formBuilderGroupOrder.getRawValue().dateAndTime,
-      lastName:this.formBuilderGroupOrder.getRawValue().lastName,
+      lastName: this.formBuilderGroupOrder.getRawValue().lastName,
       firstName: this.formBuilderGroupOrder.getRawValue().firstName
     }
-    console.log('newOrders ', newOrders)
 
-     this.storeOrder.addOrder(newOrders)
+    this.storeOrder.addOrder(newOrders)
   }
 }
