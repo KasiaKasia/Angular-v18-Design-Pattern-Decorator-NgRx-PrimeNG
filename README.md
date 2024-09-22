@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 **Steps to start the application**
 
 1. Clone the repository by executing the command: 
-    `git clone git clone https://github.com/KasiaKasia/Angular-Material-v18.git`
+    `git clone https://github.com/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG.git`
 2. Install the necessary libraries to run the Angular application: 
     `npm i` 
 3. Start the client server: 
