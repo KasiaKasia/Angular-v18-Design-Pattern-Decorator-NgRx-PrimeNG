@@ -1,0 +1,28 @@
+<div class="navbar">
+    <div class="navbar__wrapper">
+        <div class="navbar__section">
+            <a class="navbar__routerLink text-xl" [routerLink]="'/home'" name='home'>Start</a>
+        </div>
+    </div>
+    <div class="navbar__wrapper">
+        <div class="navbar__section">
+            <a class="navbar__routerLink text-xl" [routerLink]="'configuration'" name='configuration'>Konfiguracja</a>
+        </div>
+    </div>
+    <div class="navbar__wrapper">
+        <div class="navbar__section">
+            <a class="navbar__routerLink text-xl" [routerLink]="'module/table'" name='table'>Kosiarki</a>
+        </div>
+    </div>
+    <div class="navbar__wrapper">
+        <div class="navbar__section">
+            <i class="pi pi-user text-xl"></i>
+        </div>
+    </div>
+    <div class="navbar__wrapper">
+        <div class="navbar__section">
+            <i class="pi pi-shopping-cart text-xl"></i>
+          <span class="absolute ml-1">{{storeOrder.ordersCount()}}</span>
+        </div>
+    </div>
+</div>
