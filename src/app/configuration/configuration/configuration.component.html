@@ -3,14 +3,14 @@
         <p-stepper [(activeStep)]="active">
             <p-stepperPanel>
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                    <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()"> 
+                    <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
                         <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
                             [ngClass]="{
                             ' ': index <= active,
                             'surface-border': index > active
                             }">
                             <i class="pi pi-cog"></i>
-                        </span> 
+                        </span>
                     </p-button>
                 </ng-template>
                 <ng-template pTemplate="content" let-nextCallback="nextCallback">
@@ -21,217 +21,144 @@
                             <form [formGroup]="formBuilderGroup">
                                 <div class="flex justify-content-center gap-3 align-items-center">
 
-                                    @for ( engineType of engineTypes; track engineType.id ) {                        
+                                    @for ( engineType of engineTypes; track engineType.id ) {
 
-                                    <p-radioButton class="m-4" 
-                                                    inputId="{{engineType.id}}" 
-                                                    [value]="engineType"
-                                                    (onClick)="notificationContent = selectedEngineType($event)"
-                                                    formControlName="engineType" />
+                                    <p-radioButton class="m-4" inputId="{{engineType.id}}" [value]="engineType"
+                                        (onClick)="notificationContent = selectedEngineType($event)"
+                                        formControlName="engineType" />
                                     <label [for]="engineType.id">{{ engineType.name }}</label>
-                        
+
                                     }
                                 </div>
-                                <div class="flex flex-wrap gap-1"> 
-                                @if(notificationContent?.wrappee?.engineTypeName === EngineTypeRecords[1]){
-                                    
+                                <div class="flex flex-wrap gap-1">
+                                    @if(notificationContent?.wrappee?.engineTypeName === EngineTypeRecords[1]){
+
                                     <div class="flex align-items-center w-full md:w-12">
-                                        <label for="engineDisplacement" class="flex-shrink-0 w-4">Pojemność skokowa silnika:</label>
-                                        <p-dropdown dropdownDefaultsSettings    
-                                            autoWidth="false"                                             
+                                        <label for="engineDisplacement" class="flex-shrink-0 w-4">Pojemność skokowa
+                                            silnika:</label>
+                                        <p-dropdown dropdownDefaultsSettings autoWidth="false"
                                             [options]="notificationContent?.getEngineDisplacement()"
-                                            formControlName="engineDisplacement" 
-                                            inputId="engineDisplacement"
-                                            optionLabel="value"   
-                                            filterBy="value" 
+                                            formControlName="engineDisplacement" inputId="engineDisplacement"
+                                            optionLabel="value" filterBy="value"
                                             placeholder="Wybierz pojemność skokową silnika" />
                                     </div>
-                                    
+
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="tankCapacity" class="flex-shrink-0 w-4">Pojemność baku:</label>
-                                        <p-dropdown dropdownDefaultsSettings 
-                                            autoWidth="false"  
-                                            [options]="notificationContent?.getTankCapacity()" 
-                                            formControlName="tankCapacity"                                           
-                                            inputId="tankCapacity"
-                                            optionLabel="value" 
-                                            filterBy="value" 
-                                            placeholder="Wybierz pojemność baku" />
+                                        <p-dropdown dropdownDefaultsSettings autoWidth="false"
+                                            [options]="notificationContent?.getTankCapacity()"
+                                            formControlName="tankCapacity" inputId="tankCapacity" optionLabel="value"
+                                            filterBy="value" placeholder="Wybierz pojemność baku" />
                                     </div>
-                                    
+
                                     <div class="flex align-items-center w-full md:w-12">
-                                        <label for="cuttingLevels" class="flex-shrink-0 w-4">Ilość poziomów koszenia:</label>
-                                        <p-dropdown dropdownDefaultsSettings
-                                            autoWidth="false"  
+                                        <label for="cuttingLevels" class="flex-shrink-0 w-4">Ilość poziomów
+                                            koszenia:</label>
+                                        <p-dropdown dropdownDefaultsSettings autoWidth="false"
                                             [options]="notificationContent?.getNumberOfCuttingLevels()"
-                                            formControlName="cuttingLevels"                                        
-                                            inputId="cuttingLevels"
-                                            optionLabel="value"                                        
-                                            filterBy="value" 
-                                            placeholder="Wybierz ilość poziomów koszenia" />
-                                    </div>                               
-                                }
+                                            formControlName="cuttingLevels" inputId="cuttingLevels" optionLabel="value"
+                                            filterBy="value" placeholder="Wybierz ilość poziomów koszenia" />
+                                    </div>
+                                    }
                                 </div>
                                 <div class="flex flex-wrap gap-1">
-                                @if(notificationContent?.wrappee?.engineTypeName === EngineTypeRecords[2]){
-                                    
+                                    @if(notificationContent?.wrappee?.engineTypeName === EngineTypeRecords[2]){
+
                                     <div class="flex align-items-center w-full md:w-12">
-                                            <label for="cableLength" class="flex-shrink-0 w-4">Długość kabla dla silnika:</label>
-                                            <p-dropdown 
-                                                class="w-full"
-                                                autoWidth="false" 
-                                                [style]="{'width':'100%'}"
-                                                [options]="notificationContent?.getCableLength()" 
-                                                formControlName="cableLength"
-                                                [checkmark]="true" 
-                                                inputId="cableLength"
-                                                optionLabel="value"
-                                                [showClear]="true" [filter]="true"
-                                                filterBy="value" 
-                                                placeholder="Wybierz długość kabla dla silnika" />
+                                        <label for="cableLength" class="flex-shrink-0 w-4">Długość kabla dla
+                                            silnika:</label>
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="notificationContent?.getCableLength()"
+                                            formControlName="cableLength" [checkmark]="true" inputId="cableLength"
+                                            optionLabel="value" [showClear]="true" [filter]="true" filterBy="value"
+                                            placeholder="Wybierz długość kabla dla silnika" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
-                                            <label for="numberOfBlades" class="flex-shrink-0 w-4">Ilość ostrzy:</label>
-                                            <p-dropdown 
-                                                class="w-full"
-                                                autoWidth="false" 
-                                                [style]="{'width':'100%'}"
-                                                [options]="notificationContent?.getNumberOfBlades()"
-                                                formControlName="numberOfBlades"
-                                                [checkmark]="true" 
-                                                inputId="numberOfBlades"
-                                                optionLabel="value" 
-                                                [showClear]="true" 
-                                                [filter]="true"
-                                                filterBy="value" 
-                                                placeholder="Wybierz ilość ostrzy" />
+                                        <label for="numberOfBlades" class="flex-shrink-0 w-4">Ilość ostrzy:</label>
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="notificationContent?.getNumberOfBlades()"
+                                            formControlName="numberOfBlades" [checkmark]="true" inputId="numberOfBlades"
+                                            optionLabel="value" [showClear]="true" [filter]="true" filterBy="value"
+                                            placeholder="Wybierz ilość ostrzy" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
-                                            <label  for="color1" class="flex-shrink-0 w-4">Kolor:</label>
-                                            <p-dropdown 
-                                                class="w-full"
-                                                autoWidth="false" 
-                                                [style]="{'width':'100%'}"
-                                                [options]="notificationContent?.getColors()" 
-                                                formControlName="color1"
-                                                [checkmark]="true" 
-                                                inputId="color1" 
-                                                optionLabel="name" 
-                                                [showClear]="true" 
-                                                [filter]="true"
-                                                filterBy="name" 
-                                                placeholder="Wybierz kolor" />
+                                        <label for="color1" class="flex-shrink-0 w-4">Kolor:</label>
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="notificationContent?.getColors()" formControlName="color1"
+                                            [checkmark]="true" inputId="color1" optionLabel="name" [showClear]="true"
+                                            [filter]="true" filterBy="name" placeholder="Wybierz kolor" />
                                     </div>
-                                    
-                                }
+
+                                    }
                                 </div>
                                 <div class="flex flex-wrap gap-1">
-                                @if(notificationContent?.wrappee?.engineTypeName === EngineTypeRecords[3]){
-                                
+                                    @if(notificationContent?.wrappee?.engineTypeName === EngineTypeRecords[3]){
+
                                     <div class="flex align-items-center w-full md:w-12">
-                                        <label for="numberOfBatteries" class="flex-shrink-0 w-4">Ilość akumulatorów:</label>
-                                        <p-dropdown 
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
+                                        <label for="numberOfBatteries" class="flex-shrink-0 w-4">Ilość
+                                            akumulatorów:</label>
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
                                             [options]="notificationContent?.getNumberOfBatteries()"
-                                            formControlName="numberOfBatteries" 
-                                            [checkmark]="true" 
-                                            inputId="numberOfBatteries" 
-                                            optionLabel="value" 
-                                            [showClear]="true"
-                                            [filter]="true" 
-                                            filterBy="value" 
-                                            placeholder="Wybierz ilość akumulatorów" />
+                                            formControlName="numberOfBatteries" [checkmark]="true"
+                                            inputId="numberOfBatteries" optionLabel="value" [showClear]="true"
+                                            [filter]="true" filterBy="value" placeholder="Wybierz ilość akumulatorów" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
-                                        <label for="capacityOfOneBattery" class="flex-shrink-0 w-4">Pojemoność jednego akulumatora:</label>
-                                        <p-dropdown
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
+                                        <label for="capacityOfOneBattery" class="flex-shrink-0 w-4">Pojemoność jednego
+                                            akulumatora:</label>
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
                                             [options]="notificationContent?.getCapacityOfOneBattery()"
-                                            formControlName="capacityOfOneBattery" 
-                                            [checkmark]="true" 
-                                            inputId="capacityOfOneBattery" 
-                                            optionLabel="value" 
-                                            [showClear]="true"
-                                            [filter]="true" 
-                                            filterBy="value"
+                                            formControlName="capacityOfOneBattery" [checkmark]="true"
+                                            inputId="capacityOfOneBattery" optionLabel="value" [showClear]="true"
+                                            [filter]="true" filterBy="value"
                                             placeholder="Wybierz pojemoność jednego akulumatora" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="colror2" class="flex-shrink-0 w-4">Kolor:</label>
-                                        <p-dropdown 
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
-                                            [options]="notificationContent?.getColors()" 
-                                            formControlName="color2"
-                                            [checkmark]="true" 
-                                            inputId="colror2" 
-                                            optionLabel="name" 
-                                            [showClear]="true" 
-                                            [filter]="true"
-                                            filterBy="name" 
-                                            placeholder="Wybierz kolor" />
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="notificationContent?.getColors()" formControlName="color2"
+                                            [checkmark]="true" inputId="colror2" optionLabel="name" [showClear]="true"
+                                            [filter]="true" filterBy="name" placeholder="Wybierz kolor" />
                                     </div>
-                                
-                                }
+
+                                    }
                                 </div>
 
                                 <div class="flex flex-wrap gap-1 mt-3">
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="brand" class="flex-shrink-0 w-4">Marki kosiarek:</label>
-                                        <p-dropdown 
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
-                                            [options]="brands" 
-                                            formControlName="brand" 
-                                            [checkmark]="true"
-                                            inputId="brand" 
-                                            optionLabel="name" 
-                                            [showClear]="true" 
-                                            [filter]="true" 
-                                            filterBy="name"
-                                            placeholder="Wybierz markę kosiarki" />
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="brands" formControlName="brand" [checkmark]="true"
+                                            inputId="brand" optionLabel="name" [showClear]="true" [filter]="true"
+                                            filterBy="name" placeholder="Wybierz markę kosiarki" />
                                     </div>
-                                
+
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="model" class="flex-shrink-0 w-4">Model kosiarki:</label>
-                                        <p-dropdown 
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
-                                            [options]="models" 
-                                            formControlName="model" 
-                                            [checkmark]="true"
-                                            inputId="model" 
-                                            optionLabel="name" 
-                                            [showClear]="true" 
-                                            [filter]="true" 
-                                            filterBy="name"
-                                            placeholder="Wybierz model kosiarki" />
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="models" formControlName="model" [checkmark]="true"
+                                            inputId="model" optionLabel="name" [showClear]="true" [filter]="true"
+                                            filterBy="name" placeholder="Wybierz model kosiarki" />
                                     </div>
                                 </div>
 
-                                <p-button (onClick)="saveMowerConfiguration()" class="flex justify-content-center m-4" label="Zapisz" icon="pi pi-save" iconPos="right" />
+                                <p-button (onClick)="saveMowerConfiguration()" class="flex justify-content-center m-4"
+                                    label="Zapisz" icon="pi pi-save" iconPos="right" />
                             </form>
                         </div>
-                   
+
                     </div>
                     <div class="flex pt-4 justify-content-end">
-                        <p-button (onClick)="nextCallback.emit()" label="Next" icon="pi pi-arrow-right"
-                            iconPos="right" [disabled]="levelOne" />
+                        <p-button (onClick)="nextCallback.emit()" label="Next" icon="pi pi-arrow-right" iconPos="right"
+                            [disabled]="levelOne" />
                     </div>
                 </ng-template>
-                </p-stepperPanel>
-                <p-stepperPanel>
+            </p-stepperPanel>
+            <p-stepperPanel>
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
                     <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
                         <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
@@ -244,64 +171,41 @@
                     </p-button>
                 </ng-template>
                 <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
-               
+
                     <div class="flex flex-column gap-2 mx-auto" style="min-height: 16rem; max-width: 50rem">
                         <div class="text-center mt-3 mb-3 text-xl font-semibold">Zamówienie</div>
                         <div class="flex gap-1 flex-wrap justify-content-center">
                             <form [formGroup]="formBuilderGroupOrder">
-                                
+
                                 <div class="flex flex-wrap gap-1">
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="paymentType" class="flex-shrink-0 w-4">Płatność:</label>
-                                        <p-dropdown  
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
-                                            [options]="PaymentTypeOptions"
-                                            formControlName="paymentType" 
-                                            [checkmark]="true" 
-                                            inputId="paymentType"
-                                            optionLabel="label" 
-                                            [showClear]="true" 
-                                            [filter]="true" 
-                                            filterBy="label" 
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="PaymentTypeOptions" formControlName="paymentType"
+                                            [checkmark]="true" inputId="paymentType" optionLabel="label"
+                                            [showClear]="true" [filter]="true" filterBy="label"
                                             placeholder="Wybierz typ płatności" />
                                     </div>
 
 
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="deliveryType" class="flex-shrink-0 w-4">Typ dostawy:</label>
-                                        <p-dropdown  
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
-                                            [options]="deliveryType"
-                                            formControlName="deliveryType" 
-                                            [checkmark]="true" 
-                                            inputId="deliveryType"
-                                            optionLabel="name" 
-                                            [showClear]="true" 
-                                            [filter]="true" 
-                                            filterBy="name" 
-                                            placeholder="Wybierz typ dostawy" />
+                                        <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            [options]="deliveryType" formControlName="deliveryType" [checkmark]="true"
+                                            inputId="deliveryType" optionLabel="name" [showClear]="true" [filter]="true"
+                                            filterBy="name" placeholder="Wybierz typ dostawy" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="dateAndTime" class="flex-shrink-0 w-4">Data i godzina</label>
 
-                                        <p-calendar 
-                                            class="w-full"
-                                            autoWidth="false" 
-                                            [style]="{'width':'100%'}"
-                                            inputId="calendar-24h"  
-                                            formControlName="dateAndTime" 
-                                            [showTime]="true" 
-                                            dateFormat="dd/mm/yy"
-                                            [hourFormat]="'24'" />
+                                        <p-calendar class="w-full" autoWidth="false" [style]="{'width':'100%'}"
+                                            inputId="calendar-24h" formControlName="dateAndTime" [showTime]="true"
+                                            dateFormat="dd/mm/yy" [hourFormat]="'24'" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
-                                    
+
                                         <p-inputGroup class="mr-1">
                                             <p-inputGroupAddon>
                                                 <i class="pi pi-user"></i>
@@ -317,111 +221,126 @@
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
-                            
-                                        <p-inputGroup >
-                                            <p-floatLabel  class="w-full">
-                                                <input  class="w-full" formControlName="city" id="city" type="text" pInputText   />
+
+                                        <p-inputGroup>
+                                            <p-floatLabel class="w-full">
+                                                <input class="w-full" formControlName="city" id="city" type="text"
+                                                    pInputText />
                                                 <label for="city">Misto</label>
                                             </p-floatLabel>
-                                    
+
                                             <p-floatLabel>
-                                                <input formControlName="zipCode" id="zipCode" type="text" pInputText   />
+                                                <input formControlName="zipCode" id="zipCode" type="text" pInputText />
                                                 <label for="zipCode">Kod pocztowy</label>
                                             </p-floatLabel>
                                         </p-inputGroup>
                                     </div>
 
                                     <div class="flex align-items-center  md:w-12  mt-4">
-                            
+
                                         <p-inputGroup class="w-full ">
                                             <p-floatLabel class="w-full ">
-                                                <input formControlName="street" class="w-full " id="street" type="text" pInputText   />
+                                                <input formControlName="street" class="w-full " id="street" type="text"
+                                                    pInputText />
                                                 <label for="street">Ulica</label>
                                             </p-floatLabel>
                                         </p-inputGroup>
                                     </div>
-    
+
                                     <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
-                            
-                                        <p-inputGroup>    
+
+                                        <p-inputGroup>
                                             <p-floatLabel>
-                                                <input formControlName="houseNumber" id="houseNumber" type="text" pInputText   />
+                                                <input formControlName="houseNumber" id="houseNumber" type="text"
+                                                    pInputText />
                                                 <label for="houseNumber">Numer domu</label>
                                             </p-floatLabel>
                                             <p-floatLabel>
-                                                <input formControlName="apartmentNumber" id="apartmentNumber" type="text" pInputText   />
+                                                <input formControlName="apartmentNumber" id="apartmentNumber"
+                                                    type="text" pInputText />
                                                 <label for="apartmentNumber">Numer mieszkania</label>
                                             </p-floatLabel>
                                         </p-inputGroup>
                                     </div>
-                                  </div>
-                                <div class="text-center mt-3 mb-3 text-base font-semibold">Adres osoby upoważnionej</div>
+                                </div>
+                                <div class="text-center mt-3 mb-3 text-base font-semibold">Adres osoby upoważnionej
+                                </div>
                                 @for (t of listAddressesAuthorizedPersons.controls; track $index) {
-                                    <div formArrayName="listAddressesAuthorizedPersons">
-                                        <ng-container [formGroupName]="$index">
-                                            <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
-                                    
-                                                <p-inputGroup class="mr-1">
-                                                    <p-inputGroupAddon>
-                                                        <i class="pi pi-user"></i>
-                                                    </p-inputGroupAddon>
-                                                    <input formControlName="lastName" pInputText placeholder="Nazwisko" />
-                                                </p-inputGroup>
-                                                <p-inputGroup class="ml-1">
-                                                    <p-inputGroupAddon>
-                                                        <i class="pi pi-user"></i>
-                                                    </p-inputGroupAddon>
-                                                    <input formControlName="firstName" pInputText placeholder="Imię" />
-                                                </p-inputGroup>
-                                            </div>
-            
-                                            <div class="flex align-items-center w-full md:w-12">
-                                    
-                                                <p-inputGroup>
-                                                    <p-floatLabel  class="w-full">
-                                                        <input class="w-full" formControlName="city" id="city" type="text" pInputText />
-                                                        <label for="city">Misto</label>
-                                                    </p-floatLabel>
-                                            
-                                                    <p-floatLabel>
-                                                        <input formControlName="zipCode" id="zipCode" type="text" pInputText />
-                                                        <label for="zipCode">Kod pocztowy</label>
-                                                    </p-floatLabel>
-                                                </p-inputGroup>
-                                            </div>
-            
-                                            <div class="flex align-items-center  md:w-12  mt-4">
-                                    
-                                                <p-inputGroup class="w-full">
-                                                    <p-floatLabel class="w-full">
-                                                        <input formControlName="street" class="w-full" id="street" type="text" pInputText />
-                                                        <label for="street">Ulica</label>
-                                                    </p-floatLabel>
-                                                </p-inputGroup>
-                                            </div>
-            
-                                            <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
-                                    
-                                                <p-inputGroup>    
-                                                    <p-floatLabel>
-                                                        <input formControlName="houseNumber" id="houseNumber" type="text" pInputText />
-                                                        <label for="houseNumber">Numer domu</label>
-                                                    </p-floatLabel>
-                                                    <p-floatLabel>
-                                                        <input formControlName="apartmentNumber" id="apartmentNumber" type="text" pInputText />
-                                                        <label for="apartmentNumber">Numer mieszkania</label>
-                                                    </p-floatLabel>
-                                                </p-inputGroup>
-                                            </div>
-                                            
-                                            <div class="flex align-items-center justify-content-center w-full md:w-12">                                        
-                                                <button pButton pRipple type="button" label="Dodaj adres osoby upoważnionej" (click)="addddressAuthorizedPerson()" class="p-button-outlined p-button-success m-4"></button>
-                                                <button pButton pRipple type="button" label="Usuń adres osoby upoważnionej" (click)="removeddressAuthorizedPerson($index)" class="p-button-outlined p-button-danger m-4"></button>
-                                            </div>
-                                        </ng-container>                                       
-                                    </div>
-                                }                              
-                                <p-button (onClick)="saveOrder()" class="flex justify-content-center m-4" label="Zapisz" icon="pi pi-save" iconPos="right" />
+                                <div formArrayName="listAddressesAuthorizedPersons">
+                                    <ng-container [formGroupName]="$index">
+                                        <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
+
+                                            <p-inputGroup class="mr-1">
+                                                <p-inputGroupAddon>
+                                                    <i class="pi pi-user"></i>
+                                                </p-inputGroupAddon>
+                                                <input formControlName="lastName" pInputText placeholder="Nazwisko" />
+                                            </p-inputGroup>
+                                            <p-inputGroup class="ml-1">
+                                                <p-inputGroupAddon>
+                                                    <i class="pi pi-user"></i>
+                                                </p-inputGroupAddon>
+                                                <input formControlName="firstName" pInputText placeholder="Imię" />
+                                            </p-inputGroup>
+                                        </div>
+
+                                        <div class="flex align-items-center w-full md:w-12">
+
+                                            <p-inputGroup>
+                                                <p-floatLabel class="w-full">
+                                                    <input class="w-full" formControlName="city" id="city" type="text"
+                                                        pInputText />
+                                                    <label for="city">Misto</label>
+                                                </p-floatLabel>
+
+                                                <p-floatLabel>
+                                                    <input formControlName="zipCode" id="zipCode" type="text"
+                                                        pInputText />
+                                                    <label for="zipCode">Kod pocztowy</label>
+                                                </p-floatLabel>
+                                            </p-inputGroup>
+                                        </div>
+
+                                        <div class="flex align-items-center  md:w-12  mt-4">
+
+                                            <p-inputGroup class="w-full">
+                                                <p-floatLabel class="w-full">
+                                                    <input formControlName="street" class="w-full" id="street"
+                                                        type="text" pInputText />
+                                                    <label for="street">Ulica</label>
+                                                </p-floatLabel>
+                                            </p-inputGroup>
+                                        </div>
+
+                                        <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
+
+                                            <p-inputGroup>
+                                                <p-floatLabel>
+                                                    <input formControlName="houseNumber" id="houseNumber" type="text"
+                                                        pInputText />
+                                                    <label for="houseNumber">Numer domu</label>
+                                                </p-floatLabel>
+                                                <p-floatLabel>
+                                                    <input formControlName="apartmentNumber" id="apartmentNumber"
+                                                        type="text" pInputText />
+                                                    <label for="apartmentNumber">Numer mieszkania</label>
+                                                </p-floatLabel>
+                                            </p-inputGroup>
+                                        </div>
+
+                                        <div class="flex align-items-center justify-content-center w-full md:w-12">
+                                            <button pButton pRipple type="button" label="Dodaj adres osoby upoważnionej"
+                                                (click)="addddressAuthorizedPerson()"
+                                                class="p-button-outlined p-button-success m-4"></button>
+                                            <button pButton pRipple type="button" label="Usuń adres osoby upoważnionej"
+                                                (click)="removeddressAuthorizedPerson($index)"
+                                                class="p-button-outlined p-button-danger m-4"></button>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                }
+                                <p-button (onClick)="saveOrder()" class="flex justify-content-center m-4" label="Zapisz"
+                                    icon="pi pi-save" iconPos="right" />
 
                             </form>
                         </div>
@@ -429,8 +348,8 @@
                     <div class="flex pt-4 justify-content-between">
                         <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary"
                             icon="pi pi-arrow-left" />
-                        <p-button (onClick)="nextCallback.emit()" label="Next" icon="pi pi-arrow-right"
-                            iconPos="right" [disabled]="levelTwo"/>
+                        <p-button (onClick)="nextCallback.emit()" label="Next" icon="pi pi-arrow-right" iconPos="right"
+                            [disabled]="levelTwo" />
                     </div>
                 </ng-template>
             </p-stepperPanel>
@@ -449,11 +368,12 @@
                 <ng-template pTemplate="content" let-prevCallback="prevCallback">
                     <div class="flex flex-column gap-2 mx-auto" style="max-width: 50rem">
                         <div class="text-center mt-3 mb-3 text-xl font-semibold">Podsumowanie</div>
-               
-                        
-                        <div class="flex flex-column align-items-start md:flex-row md:align-items-center md:justify-content-between border-bottom-1 surface-border pb-5 min-w-max">
+
+
+                        <div
+                            class="flex flex-column align-items-start md:flex-row md:align-items-center md:justify-content-between border-bottom-1 surface-border pb-5 min-w-max">
                             <div class="flex flex-column">
-                                <app-logo-angular/>
+                                <app-logo-angular />
                                 <div class="my-3 text-4xl font-bold text-900">{{rowValueOrder.firstName + ' ' + rowValueOrder.lastName}} </div>
                                 <span class="mb-2">{{ rowValueOrder.zipCode + ' ' + rowValueOrder.city }}</span>
                                 <span>{{ rowValueOrder.street + ' ' + rowValueOrder.houseNumber+ ' ' + rowValueOrder.apartmentNumber }}</span>
@@ -482,23 +402,25 @@
                                         <span>{{rowValueOrder.deliveryType.name}}</span>
                                     </div>
                                 </div>
-                            </div>	
+                            </div>
                         </div>
 
                         <div class="flex flex-column gap-2 overflow-auto">
-                              <div class="flex justify-content-between px-3 py-2 border-left-2 border-right-2 border-round-md card border-green-500">
+                            <div
+                                class="flex justify-content-between px-3 py-2 border-left-2 border-right-2 border-round-md card border-green-500">
                                 <div class="flex justify-content-between gap-3">
                                     <div class="flex flex-column justify-content-center gap-2 font-medium">
-                                        <span class="text-base">Typ: <p-tag   [severity]=" 'warning'"> {{rowValueConfigurationMower.engineType.name}}</p-tag>  </span> 
+                                        <span class="text-base">Typ: <p-tag [severity]="'warning'">
+                                                {{rowValueConfigurationMower.engineType.name}}</p-tag> </span>
                                         <span class="text-2xl">Model: {{rowValueConfigurationMower.model.name}}</span>
-                                        <span class="text-sm">Marka: {{rowValueConfigurationMower.brand.name}}</span>  
+                                        <span class="text-sm">Marka: {{rowValueConfigurationMower.brand.name}}</span>
                                         <span class="flex align-items-center gap-1 text-xs">
                                             <i class="pi pi-clock"></i> {{rowValueOrder.dateAndTime | date:'dd/MM/yyyy HH:mm'}}
-                                        </span>                                        
+                                        </span>
                                     </div>
                                 </div>
-                                 
-                             </div>  
+
+                            </div>
                         </div>
                         <div class="text-center mt-3 mb-3 text-xl font-semibold ">Specyfikacja</div>
 
@@ -506,54 +428,88 @@
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Typ</th>
-                                    <th><p-tag [severity]="'warning'"> {{rowValueConfigurationMower.engineType.name}}</p-tag></th>
+                                    <th><p-tag [severity]="'warning'">
+                                            {{rowValueConfigurationMower.engineType.name}}</p-tag></th>
                                 </tr>
                                 @switch (rowValueConfigurationMower.engineType.name) {
-                                    @case (EngineTypeRecords[1]) {  
-                                    <tr>
-                                        <td>Pojemność skokową silnika: </td>
-                                        <td>{{rowValueConfigurationMower.engineDisplacement.value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pojemność baku: </td>
-                                        <td>{{rowValueConfigurationMower.tankCapacity.value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ilość poziomów koszenia: </td>
-                                        <td>{{rowValueConfigurationMower.cuttingLevels.value}}</td>
-                                    </tr>
-                                    }
-                                    @case (EngineTypeRecords[2]) {
-                                    <tr>
-                                        <td>Długość kabla dla silnika: </td>
-                                        <td>{{rowValueConfigurationMower.cableLength.value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ilość ostrzy: </td>
-                                        <td>{{rowValueConfigurationMower.numberOfBlades.value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kolor: </td>
-                                        <td>{{rowValueConfigurationMower.color1.name}}</td>
-                                    </tr>                                 
-                                    }
-                                    @case (EngineTypeRecords[3]) { 
-                                    <tr>
-                                        <td>Ilość akumulatorów: </td>
-                                        <td>{{rowValueConfigurationMower.numberOfBatteries.value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pojemoność jednego akulumatora: </td>
-                                        <td>{{rowValueConfigurationMower.capacityOfOneBattery.value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kolor: </td>
-                                        <td>{{rowValueConfigurationMower.color2.name}}</td>
-                                    </tr>                                   
-                                 }
-                            }  
+                                @case (EngineTypeRecords[1]) {
+                                <tr>
+                                    <td>Pojemność skokową silnika: </td>
+                                    <td>{{rowValueConfigurationMower.engineDisplacement.value}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Pojemność baku: </td>
+                                    <td>{{rowValueConfigurationMower.tankCapacity.value}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ilość poziomów koszenia: </td>
+                                    <td>{{rowValueConfigurationMower.cuttingLevels.value}}</td>
+                                </tr>
+                                }
+                                @case (EngineTypeRecords[2]) {
+                                <tr>
+                                    <td>Długość kabla dla silnika: </td>
+                                    <td>{{rowValueConfigurationMower.cableLength.value}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ilość ostrzy: </td>
+                                    <td>{{rowValueConfigurationMower.numberOfBlades.value}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Kolor: </td>
+                                    <td>{{rowValueConfigurationMower.color1.name}}</td>
+                                </tr>
+                                }
+                                @case (EngineTypeRecords[3]) {
+                                <tr>
+                                    <td>Ilość akumulatorów: </td>
+                                    <td>{{rowValueConfigurationMower.numberOfBatteries.value}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Pojemoność jednego akulumatora: </td>
+                                    <td>{{rowValueConfigurationMower.capacityOfOneBattery.value}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Kolor: </td>
+                                    <td>{{rowValueConfigurationMower.color2.name}}</td>
+                                </tr>
+                                }
+                                }
                             </ng-template>
                         </p-table>
+
+                        @if(listAddressesAuthorizedPersons.length > 1 || hasNonEmptyEntries()){
+                        <div class="text-center mt-3 mb-3 text-xl font-semibold ">Lista osob upoważnionych</div>
+
+                        <p-table [value]="formBuilderGroupOrder.get('listAddressesAuthorizedPersons')?.value">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>Miasto</th>
+                                    <th>Kod Pocztowy</th>
+                                    <th>Ulica</th>
+                                    <th>Numer Domu</th>
+                                    <th>Numer Mieszkania</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-element>
+                                <tr>
+                                    <td>{{ element.firstName }}</td>
+                                    <td>{{ element.lastName }}</td>
+                                    <td>{{ element.city }}</td>
+                                    <td>{{ element.zipCode }}</td>
+                                    <td>{{ element.street }}</td>
+                                    <td>{{ element.houseNumber }}</td>
+                                    <td>{{ element.apartmentNumber }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        } @else {
+                        <div class="text-center mt-3 mb-3 text-xl font-semibold ">Brak osob upoważnionych</div>
+                        }
+
+
                     </div>
                     <div class="flex pt-4 justify-content-start">
                         <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary" icon="pi pi-arrow-left" />

@@ -4,7 +4,7 @@ import { Brand, DeliveryType, EngineType, EngineTypeRecords, Model, OrderDetails
 import { ImportsModule } from './import-modules/imports';
 import { BatteryOperatedDecoratorService, CombustionEngineDecoratorService, ElectricDecoratorService, Engine, EngineTypeName } from './decorator/mower-configuration.decorator';
 import { LogoAngularComponent } from "../components/logo-angular/logo-angular.component";
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { DropdownDefaultsSettingsDirective } from '../directives/dropdown-defaults-settings.directive';
 import { OrdersStore } from '../signal-store/orders.store';
 
@@ -12,7 +12,7 @@ import { OrdersStore } from '../signal-store/orders.store';
 @Component({
   selector: 'app-configuration',
   standalone: true,
-  imports: [ImportsModule, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective],
+  imports: [ImportsModule, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective, JsonPipe],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
 })
@@ -74,7 +74,11 @@ export class ConfigurationComponent {
   removeddressAuthorizedPerson(index: number) {
     this.listAddressesAuthorizedPersons.removeAt(index);
   }
-
+  hasNonEmptyEntries(): boolean {
+    return this.listAddressesAuthorizedPersons.value.some((person: any) => 
+      person.firstName || person.lastName || person.city || person.zipCode || person.street || person.houseNumber || person.apartmentNumber
+    );
+  } 
   deliveryType: DeliveryType[] = deliveryType;
 
   engineTypes: { id: EngineType, name: string }[] = Object.keys(EngineTypeRecords).map(key => ({
