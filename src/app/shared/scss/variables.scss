@@ -11,8 +11,12 @@ $gray-400: oklch(70.9% 0.015 304.04);
 
 $color-white: white;
 $color-red: #ff0000;
+$color-green: #449e48; 
 
-$pill-accent: $bright-blue;
+$color-light-purple: oklch(0.6 0.3 318.45);
+$color-light-blue:oklch(0.74 0.14 218.92);
+$color-light-green:oklch(0.8 0.33 145.37);
+ 
 
 $red-to-pink-to-purple-vertical-gradient: linear-gradient(
   180deg,
@@ -20,12 +24,11 @@ $red-to-pink-to-purple-vertical-gradient: linear-gradient(
   $vivid-pink 50%,
   $electric-violet 100%
 );
-
-$red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-  90deg,
-  $orange-red 0%,
-  $vivid-pink 50%,
-  $electric-violet 100%
+ $purple-to-blue-to-green-horizontal-gradient: linear-gradient(
+  90deg, 
+  $color-light-purple 0%,
+  $color-light-blue 50%,
+  $color-light-green 100%
 );
 
 $gradient-text-color-red: linear-gradient(to right, #f59095e8 0%, $color-red 100%);
