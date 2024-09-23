@@ -16,6 +16,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 **The project includes libraries such as:** 
 `@ngrx/signals`, `primeflex`, `primeng`. The Decorator design pattern is also applied.
 
+You can also view the task at the following links:
+
+- https://stackblitz.com/~/github.com/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG
+- https://angularv18designpatterndecorat-qhlf--4200--e7ca9335.local-credentialless.webcontainer.io/configuration
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
