@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SharedModule } from './shared/shared.module';
 import { ConfigurationModule } from './configuration/configuration.module';
+
 @Component({
   selector: 'app-root',
   standalone: true,
