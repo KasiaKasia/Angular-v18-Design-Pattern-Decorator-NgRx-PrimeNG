@@ -25,7 +25,8 @@ export class ConfigurationComponent {
   protected notificationContent: any
   protected notifier: Engine = new EngineTypeName()
   readonly storeOrder = inject(OrdersStore);
-
+  protected levelOne = true
+  protected levelTwo = true
   protected formBuilderGroup: FormGroup = this.formBuilder.group({
     engineType: new FormControl(<EngineType | null>(null),),
     brand: new FormControl<Brand | null>(null),
@@ -105,13 +106,11 @@ export class ConfigurationComponent {
       this.formBuilderGroup.addControl('numberOfBlades', new FormControl(''));
       this.formBuilderGroup.addControl('color1', new FormControl(''));
 
-
       this.removeControls(['engineDisplacement', 'tankCapacity', 'cuttingLevels', 'numberOfBatteries', 'capacityOfOneBattery', 'color2']);
     } else if (engineType.name === EngineTypeRecords[3]) {
       this.formBuilderGroup.addControl('numberOfBatteries', new FormControl(''));
       this.formBuilderGroup.addControl('capacityOfOneBattery', new FormControl(''));
       this.formBuilderGroup.addControl('color2', new FormControl('', Validators.required));
-
 
       this.removeControls(['engineDisplacement', 'tankCapacity', 'cuttingLevels', 'cableLength', 'bladeCount', 'color1']);
     }
@@ -161,6 +160,7 @@ export class ConfigurationComponent {
     this.rowValueConfigurationMower = this.formBuilderGroup.getRawValue()
 
     if (this.formBuilderGroup.dirty && this.formBuilderGroup.valid) {
+      this.levelOne = false
     }
   }
 
@@ -173,20 +173,21 @@ export class ConfigurationComponent {
     if (this.formBuilderGroupOrder.invalid) { return };
     this.rowValueOrder = this.formBuilderGroupOrder.getRawValue()
     if (this.formBuilderGroupOrder.dirty && this.formBuilderGroupOrder.valid) {
+      this.levelTwo = false
+      const newOrders: OrderDetails = {
+        id: this.findMaxIdInTasks() + 1,
+        engineType: this.formBuilderGroup.getRawValue().engineType.name,
+        brand: this.formBuilderGroup.getRawValue().brand.name,
+        model: this.formBuilderGroup.getRawValue().model.name,
+        paymentType: this.formBuilderGroupOrder.getRawValue().paymentType.label,
+        deliveryType: this.formBuilderGroupOrder.getRawValue().deliveryType.name,
+        dateAndTime: this.formBuilderGroupOrder.getRawValue().dateAndTime,
+        lastName: this.formBuilderGroupOrder.getRawValue().lastName,
+        firstName: this.formBuilderGroupOrder.getRawValue().firstName
+      }
 
-    }
-    const newOrders: OrderDetails = {
-      id: this.findMaxIdInTasks() + 1,
-      engineType: this.formBuilderGroup.getRawValue().engineType.name,
-      brand: this.formBuilderGroup.getRawValue().brand.name,
-      model: this.formBuilderGroup.getRawValue().model.name,
-      paymentType: this.formBuilderGroupOrder.getRawValue().paymentType.label,
-      deliveryType: this.formBuilderGroupOrder.getRawValue().deliveryType.name,
-      dateAndTime: this.formBuilderGroupOrder.getRawValue().dateAndTime,
-      lastName: this.formBuilderGroupOrder.getRawValue().lastName,
-      firstName: this.formBuilderGroupOrder.getRawValue().firstName
+      this.storeOrder.addOrder(newOrders)
     }
 
-    this.storeOrder.addOrder(newOrders)
   }
 }

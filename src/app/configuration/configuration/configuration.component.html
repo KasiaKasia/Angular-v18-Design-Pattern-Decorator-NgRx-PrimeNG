@@ -3,18 +3,15 @@
         <p-stepper [(activeStep)]="active">
             <p-stepperPanel>
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                    <button pButton pRipple type="button" class="p-button-outlined p-button-success"
-                        (click)="onClick.emit()">
-                        <!-- <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()"> -->
-                        <span class="border-round   w-3rem h-3rem inline-flex align-items-center justify-content-center"
+                    <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()"> 
+                        <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
                             [ngClass]="{
                             ' ': index <= active,
                             'surface-border': index > active
-                        }">
-                            <i class="pi pi-cog" style="color: green;"></i>
-                        </span>
-                    </button>
-                    <!-- </p-button> -->
+                            }">
+                            <i class="pi pi-cog"></i>
+                        </span> 
+                    </p-button>
                 </ng-template>
                 <ng-template pTemplate="content" let-nextCallback="nextCallback">
 
@@ -230,14 +227,14 @@
                     </div>
                     <div class="flex pt-4 justify-content-end">
                         <p-button (onClick)="nextCallback.emit()" label="Next" icon="pi pi-arrow-right"
-                            iconPos="right" />
+                            iconPos="right" [disabled]="levelOne" />
                     </div>
                 </ng-template>
                 </p-stepperPanel>
                 <p-stepperPanel>
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
                     <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
-                        <span class="border-round   w-3rem h-3rem inline-flex align-items-center justify-content-center"
+                        <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
                             [ngClass]="{
                             'bg-primary border-primary': index <= active,
                             'surface-border': index > active
@@ -433,7 +430,7 @@
                         <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary"
                             icon="pi pi-arrow-left" />
                         <p-button (onClick)="nextCallback.emit()" label="Next" icon="pi pi-arrow-right"
-                            iconPos="right" />
+                            iconPos="right" [disabled]="levelTwo"/>
                     </div>
                 </ng-template>
             </p-stepperPanel>
@@ -509,7 +506,7 @@
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Typ</th>
-                                    <th> <p-tag [severity]=" 'warning'"> {{rowValueConfigurationMower.engineType.name}}</p-tag> </th>
+                                    <th><p-tag [severity]="'warning'"> {{rowValueConfigurationMower.engineType.name}}</p-tag></th>
                                 </tr>
                                 @switch (rowValueConfigurationMower.engineType.name) {
                                     @case (EngineTypeRecords[1]) {  
@@ -559,13 +556,10 @@
                         </p-table>
                     </div>
                     <div class="flex pt-4 justify-content-start">
-                        <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary"
-                            icon="pi pi-arrow-left" />
+                        <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary" icon="pi pi-arrow-left" />
                     </div>
                 </ng-template>
             </p-stepperPanel>
         </p-stepper>
     </div>
-
-
 </div>
