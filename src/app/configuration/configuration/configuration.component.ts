@@ -8,12 +8,13 @@ import { DatePipe, JsonPipe } from '@angular/common';
 import { DropdownDefaultsSettingsDirective } from '../directives/dropdown-defaults-settings.directive';
 import { OrdersStore } from '../signal-store/orders.store';
 import { InputGroupComponent } from '../components/input-group-addon/input-group-addon.component';
+import { StepperPanelHeaderComponent } from '../components/stepper-panel-header/stepper-panel-header.component';
 
 
 @Component({
   selector: 'app-configuration',
   standalone: true,
-  imports: [ImportsModule, InputGroupComponent, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective, JsonPipe],
+  imports: [ImportsModule, StepperPanelHeaderComponent, InputGroupComponent, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective, JsonPipe],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
 })
@@ -22,7 +23,7 @@ export class ConfigurationComponent {
   EngineTypeRecords = EngineTypeRecords
   brands: Brand[] = brands
   models: Model[] = models
-  active: number = 0;
+  active: number = 0
   protected notificationContent: any
   protected notifier: Engine = new EngineTypeName()
   readonly storeOrder = inject(OrdersStore);
@@ -54,7 +55,9 @@ export class ConfigurationComponent {
     return this.formBuilderGroupOrder.get('listAddressesAuthorizedPersons') as FormArray;
   }
 
-
+  activeChange(activeNumber: number){
+    this.active = activeNumber
+  }
   createaddressAuthorizedPerson(): FormGroup {
     const listAddressesAuthorizedPersons = this.formBuilder.group({
       lastName: [''],

@@ -15,7 +15,7 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class InputGroupComponent {
   classCssForInputGroup = input<string>('');
-  clasCssForIcon = input<string>('');
+  classCssForIcon = input<string>('');
   formControlNameValue = input<string>();
   formGroupNameValue= input<number>(0)
   placeholder = input<string>('');

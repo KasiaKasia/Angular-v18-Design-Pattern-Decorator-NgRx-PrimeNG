@@ -3,16 +3,9 @@
         <p-stepper [(activeStep)]="active">
             <p-stepperPanel>
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                    <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
-                        <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                            [ngClass]="{
-                            ' ': index <= active,
-                            'surface-border': index > active
-                            }">
-                            <i class="pi pi-cog"></i>
-                        </span>
-                    </p-button>
+                    <app-stepper-panel-header [index]="index" [classCssForIcon]="'pi pi-cog'" (onClick)="activeChange(0)"/>
                 </ng-template>
+ 
                 <ng-template pTemplate="content" let-nextCallback="nextCallback">
 
                     <div class="flex flex-column gap-2 mx-auto" style="min-height: 16rem; max-width: 50rem">
@@ -159,16 +152,9 @@
                 </ng-template>
             </p-stepperPanel>
             <p-stepperPanel>
+        
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                    <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
-                        <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                            [ngClass]="{
-                            'bg-primary border-primary': index <= active,
-                            'surface-border': index > active
-                        }">
-                            <i class="pi pi-cart-arrow-down"></i>
-                        </span>
-                    </p-button>
+                    <app-stepper-panel-header [index]="index" [classCssForIcon]="'pi pi-cart-arrow-down'" (onClick)="activeChange(1)"/>
                 </ng-template>
                 <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback">
 
@@ -181,9 +167,14 @@
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="paymentType" class="flex-shrink-0 w-4">Płatność:</label>
                                         <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
-                                            [options]="PaymentTypeOptions" formControlName="paymentType"
-                                            [checkmark]="true" inputId="paymentType" optionLabel="label"
-                                            [showClear]="true" [filter]="true" filterBy="label"
+                                            [options]="PaymentTypeOptions" 
+                                            formControlName="paymentType"
+                                            [checkmark]="true" 
+                                            inputId="paymentType" 
+                                            optionLabel="label"
+                                            [showClear]="true" 
+                                            [filter]="true" 
+                                            filterBy="label"
                                             placeholder="Wybierz typ płatności" />
                                     </div>
 
@@ -191,34 +182,43 @@
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="deliveryType" class="flex-shrink-0 w-4">Typ dostawy:</label>
                                         <p-dropdown class="w-full" autoWidth="false" [style]="{'width':'100%'}"
-                                            [options]="deliveryType" formControlName="deliveryType" [checkmark]="true"
-                                            inputId="deliveryType" optionLabel="name" [showClear]="true" [filter]="true"
-                                            filterBy="name" placeholder="Wybierz typ dostawy" />
+                                            [options]="deliveryType" 
+                                            formControlName="deliveryType" 
+                                            [checkmark]="true"
+                                            inputId="deliveryType" 
+                                            optionLabel="name" 
+                                            [showClear]="true" 
+                                            [filter]="true"
+                                            filterBy="name"
+                                            placeholder="Wybierz typ dostawy" />
                                     </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
                                         <label for="dateAndTime" class="flex-shrink-0 w-4">Data i godzina</label>
 
                                         <p-calendar class="w-full" autoWidth="false" [style]="{'width':'100%'}"
-                                            inputId="calendar-24h" formControlName="dateAndTime" [showTime]="true"
-                                            dateFormat="dd/mm/yy" [hourFormat]="'24'" />
+                                            inputId="calendar-24h" 
+                                            formControlName="dateAndTime" 
+                                            [showTime]="true"
+                                            dateFormat="dd/mm/yy" 
+                                            [hourFormat]="'24'" />
                                     </div>
 
-                                   <div class="flex w-full md:w-12 mt-4 mb-4">  
-                                        <app-input-group-addon class="p-inputgroup" 
-                                        [formGroupValue]="formBuilderGroupOrder" 
-                                        [classCssForInputGroup]="'mr-1'" 
-                                        [clasCssForIcon]="'pi pi-user'" 
-                                        [formControlNameValue]="'lastName'" 
-                                        [placeholder]="'Nazwisko'" />
-                                        <app-input-group-addon class="p-inputgroup" 
-                                        [formGroupValue]="formBuilderGroupOrder" 
-                                        [classCssForInputGroup]="'ml-1'" 
-                                        [clasCssForIcon]="'pi pi-user'" 
-                                        [formControlNameValue]="'firstName'" 
-                                        [placeholder]="'Imię'" />
+                                    <div class="flex w-full md:w-12 mt-4 mb-4">
+                                        <app-input-group-addon class="p-inputgroup"
+                                            [formGroupValue]="formBuilderGroupOrder" 
+                                            [classCssForInputGroup]="'mr-1'"
+                                            [classCssForIcon]="'pi pi-user'" 
+                                            [formControlNameValue]="'lastName'"
+                                            [placeholder]="'Nazwisko'" />
+                                        <app-input-group-addon class="p-inputgroup"
+                                            [formGroupValue]="formBuilderGroupOrder" 
+                                            [classCssForInputGroup]="'ml-1'"
+                                            [classCssForIcon]="'pi pi-user'" 
+                                            [formControlNameValue]="'firstName'"
+                                            [placeholder]="'Imię'" />
 
-                                      </div>  
+                                    </div>
 
                                     <div class="flex align-items-center w-full md:w-12">
 
@@ -236,7 +236,7 @@
                                         </p-inputGroup>
                                     </div>
 
-                                    <div class="flex align-items-center  md:w-12  mt-4">
+                                    <div class="flex align-items-center md:w-12  mt-4">
 
                                         <p-inputGroup class="w-full ">
                                             <p-floatLabel class="w-full ">
@@ -267,28 +267,28 @@
                                 </div>
                                 @for (t of listAddressesAuthorizedPersons.controls; track $index; let index=$index) {
                                 <div formArrayName="listAddressesAuthorizedPersons">
-                                  
-                                    <ng-container [formGroupName]="$index"> 
+
+                                    <ng-container [formGroupName]="$index">
                                         <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
-                                            <app-input-group-addon class="p-inputgroup" 
-                                                [formArrayNameValue]="'listAddressesAuthorizedPersons'" 
-                                                [formGroupNameValue] ="index" 
-                                                [formGroupValue]="formBuilderGroupOrder" 
+                                            <app-input-group-addon class="p-inputgroup"
+                                                [formArrayNameValue]="'listAddressesAuthorizedPersons'"
+                                                [formGroupNameValue]="index" 
+                                                [formGroupValue]="formBuilderGroupOrder"
                                                 [classCssForInputGroup]="'mr-1'" 
-                                                [clasCssForIcon]="'pi pi-user'" 
+                                                [classCssForIcon]="'pi pi-user'"
                                                 [formControlNameValue]="'lastName'" 
                                                 [placeholder]="'Nazwisko'" />
 
-                                       
-                                            <app-input-group-addon class="p-inputgroup" 
-                                                [formArrayNameValue]="'listAddressesAuthorizedPersons'"  
-                                                [formGroupNameValue] ="index" 
-                                                [formGroupValue]="formBuilderGroupOrder" 
+
+                                            <app-input-group-addon class="p-inputgroup"
+                                                [formArrayNameValue]="'listAddressesAuthorizedPersons'"
+                                                [formGroupNameValue]="index" 
+                                                [formGroupValue]="formBuilderGroupOrder"
                                                 [classCssForInputGroup]="'ml-1'" 
-                                                [clasCssForIcon]="'pi pi-user'" 
+                                                [classCssForIcon]="'pi pi-user'"
                                                 [formControlNameValue]="'firstName'" 
-                                                [placeholder]="'Imię'" />    
-                                         
+                                                [placeholder]="'Imię'" />
+
                                         </div>
 
                                         <div class="flex align-items-center w-full md:w-12">
@@ -336,17 +336,21 @@
                                         </div>
 
                                         <div class="flex align-items-center justify-content-center w-full md:w-12">
-                                            <button pButton pRipple type="button" label="Dodaj adres osoby upoważnionej"
+                                            <button pButton pRipple type="button" 
+                                                label="Dodaj adres osoby upoważnionej"
                                                 (click)="addddressAuthorizedPerson()"
                                                 class="p-button-outlined p-button-success m-4"></button>
-                                            <button pButton pRipple type="button" label="Usuń adres osoby upoważnionej"
+                                            <button pButton pRipple type="button" 
+                                                label="Usuń adres osoby upoważnionej"
                                                 (click)="removeddressAuthorizedPerson($index)"
                                                 class="p-button-outlined p-button-danger m-4"></button>
                                         </div>
                                     </ng-container>
                                 </div>
                                 }
-                                <p-button (onClick)="saveOrder()" class="flex justify-content-center m-4" label="Zapisz"
+                                <p-button (onClick)="saveOrder()" 
+                                    class="flex justify-content-center m-4" 
+                                    label="Zapisz"
                                     icon="pi pi-save" iconPos="right" />
 
                             </form>
@@ -362,16 +366,9 @@
             </p-stepperPanel>
             <p-stepperPanel>
                 <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                    <p-button class="bg-transparent border-none inline-flex flex-column gap-2" (click)="onClick.emit()">
-                        <span class="border-round w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                            [ngClass]="{
-                            'bg-primary border-primary': index <= active,
-                            'surface-border': index > active
-                        }">
-                            <i class="pi pi-verified"></i>
-                        </span>
-                    </p-button>
+                    <app-stepper-panel-header [index]="index" [classCssForIcon]="'pi pi pi-verified'" (onClick)="activeChange(2)"/>
                 </ng-template>
+
                 <ng-template pTemplate="content" let-prevCallback="prevCallback">
                     <div class="flex flex-column gap-2 mx-auto" style="max-width: 50rem">
                         <div class="text-center mt-3 mb-3 text-xl font-semibold">Podsumowanie</div>
@@ -381,9 +378,11 @@
                             class="flex flex-column align-items-start md:flex-row md:align-items-center md:justify-content-between border-bottom-1 surface-border pb-5 min-w-max">
                             <div class="flex flex-column">
                                 <app-logo-angular />
-                                <div class="my-3 text-4xl font-bold text-900">{{rowValueOrder.firstName + ' ' + rowValueOrder.lastName}} </div>
+                                <div class="my-3 text-4xl font-bold text-900">{{rowValueOrder.firstName + ' ' +
+                                    rowValueOrder.lastName}} </div>
                                 <span class="mb-2">{{ rowValueOrder.zipCode + ' ' + rowValueOrder.city }}</span>
-                                <span>{{ rowValueOrder.street + ' ' + rowValueOrder.houseNumber+ ' ' + rowValueOrder.apartmentNumber }}</span>
+                                <span>{{ rowValueOrder.street + ' ' + rowValueOrder.houseNumber+ ' ' +
+                                    rowValueOrder.apartmentNumber }}</span>
                             </div>
                             <div class="flex flex-column mt-5 md:mt-0">
                                 <div class="text-2xl font-semibold text-left md:text-right mb-3">FAKTURA</div>
@@ -417,8 +416,8 @@
                                 class="flex justify-content-between px-3 py-2 border-left-2 border-right-2 border-round-md card border-green-500">
                                 <div class="flex justify-content-between gap-3">
                                     <div class="flex flex-column justify-content-center gap-2 font-medium">
-                                        <span class="text-base">Typ: <p-tag [severity]="'warning'">
-                                                {{rowValueConfigurationMower.engineType.name}}</p-tag> </span>
+                                        <span class="text-base">Typ: <p-tag [severity]="'warning'">{{rowValueConfigurationMower.engineType.name}}</p-tag> 
+                                        </span>
                                         <span class="text-2xl">Model: {{rowValueConfigurationMower.model.name}}</span>
                                         <span class="text-sm">Marka: {{rowValueConfigurationMower.brand.name}}</span>
                                         <span class="flex align-items-center gap-1 text-xs">
@@ -519,7 +518,8 @@
 
                     </div>
                     <div class="flex pt-4 justify-content-start">
-                        <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary" icon="pi pi-arrow-left" />
+                        <p-button (onClick)="prevCallback.emit()" label="Back" severity="secondary"
+                            icon="pi pi-arrow-left" />
                     </div>
                 </ng-template>
             </p-stepperPanel>
