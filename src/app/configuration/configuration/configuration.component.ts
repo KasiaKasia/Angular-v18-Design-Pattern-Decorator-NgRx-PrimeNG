@@ -7,12 +7,13 @@ import { LogoAngularComponent } from "../components/logo-angular/logo-angular.co
 import { DatePipe, JsonPipe } from '@angular/common';
 import { DropdownDefaultsSettingsDirective } from '../directives/dropdown-defaults-settings.directive';
 import { OrdersStore } from '../signal-store/orders.store';
+import { InputGroupComponent } from '../components/input-group-addon/input-group-addon.component';
 
 
 @Component({
   selector: 'app-configuration',
   standalone: true,
-  imports: [ImportsModule, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective, JsonPipe],
+  imports: [ImportsModule, InputGroupComponent, LogoAngularComponent, DatePipe, DropdownDefaultsSettingsDirective, JsonPipe],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.scss'
 })

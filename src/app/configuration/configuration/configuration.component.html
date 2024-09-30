@@ -204,21 +204,21 @@
                                             dateFormat="dd/mm/yy" [hourFormat]="'24'" />
                                     </div>
 
-                                    <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
+                                   <div class="flex w-full md:w-12 mt-4 mb-4">  
+                                        <app-input-group-addon class="p-inputgroup" 
+                                        [formGroupValue]="formBuilderGroupOrder" 
+                                        [classCssForInputGroup]="'mr-1'" 
+                                        [clasCssForIcon]="'pi pi-user'" 
+                                        [formControlNameValue]="'lastName'" 
+                                        [placeholder]="'Nazwisko'" />
+                                        <app-input-group-addon class="p-inputgroup" 
+                                        [formGroupValue]="formBuilderGroupOrder" 
+                                        [classCssForInputGroup]="'ml-1'" 
+                                        [clasCssForIcon]="'pi pi-user'" 
+                                        [formControlNameValue]="'firstName'" 
+                                        [placeholder]="'Imię'" />
 
-                                        <p-inputGroup class="mr-1">
-                                            <p-inputGroupAddon>
-                                                <i class="pi pi-user"></i>
-                                            </p-inputGroupAddon>
-                                            <input formControlName="lastName" pInputText placeholder="Nazwisko" />
-                                        </p-inputGroup>
-                                        <p-inputGroup class="ml-1">
-                                            <p-inputGroupAddon>
-                                                <i class="pi pi-user"></i>
-                                            </p-inputGroupAddon>
-                                            <input formControlName="firstName" pInputText placeholder="Imię" />
-                                        </p-inputGroup>
-                                    </div>
+                                      </div>  
 
                                     <div class="flex align-items-center w-full md:w-12">
 
@@ -265,23 +265,30 @@
                                 </div>
                                 <div class="text-center mt-3 mb-3 text-base font-semibold">Adres osoby upoważnionej
                                 </div>
-                                @for (t of listAddressesAuthorizedPersons.controls; track $index) {
+                                @for (t of listAddressesAuthorizedPersons.controls; track $index; let index=$index) {
                                 <div formArrayName="listAddressesAuthorizedPersons">
-                                    <ng-container [formGroupName]="$index">
+                                  
+                                    <ng-container [formGroupName]="$index"> 
                                         <div class="flex align-items-center w-full md:w-12 mt-4 mb-4">
+                                            <app-input-group-addon class="p-inputgroup" 
+                                                [formArrayNameValue]="'listAddressesAuthorizedPersons'" 
+                                                [formGroupNameValue] ="index" 
+                                                [formGroupValue]="formBuilderGroupOrder" 
+                                                [classCssForInputGroup]="'mr-1'" 
+                                                [clasCssForIcon]="'pi pi-user'" 
+                                                [formControlNameValue]="'lastName'" 
+                                                [placeholder]="'Nazwisko'" />
 
-                                            <p-inputGroup class="mr-1">
-                                                <p-inputGroupAddon>
-                                                    <i class="pi pi-user"></i>
-                                                </p-inputGroupAddon>
-                                                <input formControlName="lastName" pInputText placeholder="Nazwisko" />
-                                            </p-inputGroup>
-                                            <p-inputGroup class="ml-1">
-                                                <p-inputGroupAddon>
-                                                    <i class="pi pi-user"></i>
-                                                </p-inputGroupAddon>
-                                                <input formControlName="firstName" pInputText placeholder="Imię" />
-                                            </p-inputGroup>
+                                       
+                                            <app-input-group-addon class="p-inputgroup" 
+                                                [formArrayNameValue]="'listAddressesAuthorizedPersons'"  
+                                                [formGroupNameValue] ="index" 
+                                                [formGroupValue]="formBuilderGroupOrder" 
+                                                [classCssForInputGroup]="'ml-1'" 
+                                                [clasCssForIcon]="'pi pi-user'" 
+                                                [formControlNameValue]="'firstName'" 
+                                                [placeholder]="'Imię'" />    
+                                         
                                         </div>
 
                                         <div class="flex align-items-center w-full md:w-12">
