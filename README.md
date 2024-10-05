@@ -21,9 +21,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 This project demonstrates the usage of Angular's Design Pattern Decorator with NgRx and PrimeNG.
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG)
-
-<iframe src="https://stackblitz.com/~/github.com/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG?file=src/app/configuration/configuration/configuration.component.html" height="500" width="100%"></iframe>
-
+ 
 
 ## Code scaffolding
 
