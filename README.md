@@ -22,6 +22,8 @@ This project demonstrates the usage of Angular's Design Pattern Decorator with N
 
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG)
 
+<iframe src="https://stackblitz.com/github/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG" height="500" width="100%"></iframe>
+
 
 ## Code scaffolding
 
