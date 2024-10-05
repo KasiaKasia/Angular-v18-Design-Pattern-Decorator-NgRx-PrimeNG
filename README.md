@@ -16,10 +16,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 **The project includes libraries such as:** 
 `@ngrx/signals`, `primeflex`, `primeng`. The Decorator design pattern is also applied.
 
-You can also view the task at the following links:
+# Angular Design Pattern Decorator with NgRx and PrimeNG
 
-- https://stackblitz.com/~/github.com/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG
-- https://angularv18designpatterndecorat-qhlf--4200--e7ca9335.local-credentialless.webcontainer.io/configuration
+This project demonstrates the usage of Angular's Design Pattern Decorator with NgRx and PrimeNG.
+
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/KasiaKasia/Angular-v18-Design-Pattern-Decorator-NgRx-PrimeNG)
 
 
 ## Code scaffolding
